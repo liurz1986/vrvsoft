@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!--mytatis插件逆向工程生成配置文件 -->
+<!--插件自动生成命令  mvn mybatis-generator:generate -->
+<generatorConfiguration>
+    <!-- 引入 jdbc.properties数据库连接配置 -->
+    <properties resource="jdbc.properties" />
+
+    <!-- MyBatis3Simple：不生成 Example相关类及方法 -->
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`" />
+        <property name="endingDelimiter" value="`" />
+
+        <!-- 指定生成 Mapper 的继承模板 tk.mybatis插件 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.MyMapper" />
+        </plugin>
+
+        <!-- jdbc 数据库连接配置 -->
+        <jdbcConnection
+                driverClass="${jdbc.driver-class-name}"
+                connectionURL="${jdbc.url}"
+                userId="${jdbc.username}"
+                password="${jdbc.password}">
+        </jdbcConnection>
+
+        <!-- 配置数据库表实体类存放路径 -->
+        <javaModelGenerator targetPackage="com.lrz.entity" targetProject="src/main/java" />
+
+        <!-- 配置XxxMapper.xml文件存放路径 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources" />
+
+        <!-- 配置XxxMapper实体接口存放路径 -->
+        <javaClientGenerator
+                targetPackage="com.lrz.mapper"
+                targetProject="src/main/java" type="XMLMAPPER" />
+
+        <!-- 配置需要生成的表 -->
+        <!-- tableName：数据库表名，%代表所有，domainObjectName：生成文件名 ，schema：数据源 -->
+        <table tableName="tb_conf">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+        </table>
+
+    </context>
+
+</generatorConfiguration>

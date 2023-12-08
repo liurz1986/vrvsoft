@@ -1,0 +1,32 @@
+1. springboot版本升级到2.7.3
+2. 升级后的变化
+   2.1 加载不到BootStrap.yml文件,在升级到 2.4版本后，加载方式发生改，需要加入pom依赖
+          <dependency>
+              <groupId>org.springframework.cloud</groupId>
+              <artifactId>spring-cloud-starter-bootstrap</artifactId>
+          </dependency>
+
+   2.2Feign接口的FallbackFactory类包发生改变
+      由原先的feign.hystrix.FallbackFactory改为org.springframework.cloud.openfeign.FallbackFactory
+   2.3 The bean ‘xxx.FeignClientSpecification’ could not be registered. A bean with that name has already been defined and overriding is disabled.
+       查看依赖包中是否有@EnableFeignClients注解，如果一个项目中有多个该注解会报错
+   2.4 nacos配置更改
+   2.5、The dependencies of some of the beans in the application context form a cycle
+      A类引用了B类，B类引用了A类。
+      在Spring 2.6之前会自动类解决循环依赖问题，升级之后只能手动解决
+      去除循环依赖的逻辑两种方法：
+      1. 配置文件配置Spring.main.allow-circular-references=true
+      2. 主启动类：application.setAllowBeanDefinitionOverriding(true)
+   2.6Failed to start bean ‘documentationPluginsBootstrapper’; nested exception is java.lang.NullPointerException，
+     SpringBoot2.6之后将SpringMVC 默认路径匹配策略从AntPathMatcher 更改为PathPatternParser，导致出错
+     增加配置：
+     spring:
+       mvc:
+         pathmatch:
+           matching-strategy: ant_path_matcher
+   2.7Gateway报错Unable to find instance for xxx
+      高版本移除了Ribbon，需要手动添加·spring-cloud-starter-loadblancer`依赖
+      <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+      </dependency>

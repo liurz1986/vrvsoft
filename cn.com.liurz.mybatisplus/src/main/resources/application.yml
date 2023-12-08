@@ -1,0 +1,27 @@
+server:
+  port: 8099
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    #驱动版本问题 高版本需要添加cj关键字  一般可以省略
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.120.201:3306/ajb_vap?useUnicode=true&useSSL=false&characterEncoding=UTF-8
+    username: root
+    password: mysql
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+mybatis-plus:
+  #别名包定义 Mapper的resultType中只需要写类名 之后自动拼接即可,----------实体包
+  type-aliases-package: cn.com.liurz.plus.entity
+  #加载指定的xml映射文件
+  mapper-locations: classpath:/mappers/*.xml
+  #开启驼峰映射
+  configuration:
+    map-underscore-to-camel-case: true
+
+#启动 swagger
+springfox:
+  documentation:
+    enabled: true

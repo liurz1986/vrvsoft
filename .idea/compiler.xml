@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cn.com.liurz.kingbase" />
+        <module name="cn.com.liurz.tkmybatis" />
+        <module name="cn.com.liurz.jpa" />
+        <module name="cn.com.liurz.gateway" />
+        <module name="cn.com.liurz.test" />
+        <module name="cn.com.liurz.util" />
+        <module name="cn.com.liurz.flow" />
+        <module name="cn.com.liurz.es" />
+        <module name="cn.com.liurz.datasource" />
+        <module name="cn.com.liurz.mybatisplus" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cn.com.liurz.flink" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cn.com.liurz.datasource" options="-parameters" />
+      <module name="cn.com.liurz.es" options="-parameters" />
+      <module name="cn.com.liurz.flow" options="-parameters" />
+      <module name="cn.com.liurz.gateway" options="-parameters" />
+      <module name="cn.com.liurz.jpa" options="-parameters" />
+      <module name="cn.com.liurz.kingbase" options="-parameters" />
+      <module name="cn.com.liurz.mybatisplus" options="-parameters" />
+      <module name="cn.com.liurz.test" options="-parameters" />
+      <module name="cn.com.liurz.tkmybatis" options="-parameters" />
+      <module name="cn.com.liurz.util" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.datasource/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.es/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.flow/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.jpa/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.kingbase/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.kingbase/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.mybatisplus/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.tkmybatis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cn.com.liurz.util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

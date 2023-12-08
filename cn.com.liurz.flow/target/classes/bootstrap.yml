@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: api-flow
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        #配置中心地址配置
+        server-addr: ${SERVER_ADDR}
+        #命名空间id，public
+        namespace: ${NAMESPACE}
+        file-extension: yml
+        ext-config:
+          dataId: base-dev.yaml
+          group: DEFAULT_GROUP
+          refresh: true
+      discovery:
+        #配置中心地址配置
+        server-addr: ${SERVER_ADDR}
+        #命名空间id,默认为public
+        namespace: ${NAMESPACE}
+        enabled: true
+SERVER_ADDR: ${NACOS_HOST:127.0.0.1}:${NACOS_PORT:8848}
+NAMESPACE: ${NACOS_NAMESPACE:73f4424b-76dc-4684-a70f-b6a595be17e8}
+
+logging:
+  level:
+    cn.com.liurz: info
+    root: info
+    org.springframework.cloud.sleuth: error

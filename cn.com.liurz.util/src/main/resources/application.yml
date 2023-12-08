@@ -1,0 +1,44 @@
+
+#端口号，默认8080，可以自己改， 项目在设置的端口号启动
+server:
+  port: 8088
+  #项目启动时在工程名前加上usercenter,springboot2.0以下的使用server.context-path
+  servlet:
+     context-path: /test
+spring:
+  datasource:
+    #使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: mysql
+    url: jdbc:mysql://192.168.120.201:3306/ajb_vap?serverTimezone=UTC&nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    devtools:
+      restart:
+        enabled: true  #设置开启热部署
+  kafka:
+    bootstrap-servers: ${KAFKA_URL:192.168.120.201}:9092
+    consumer:
+      properties:
+        sasl.mechanism: PLAIN
+        security.protocol: SASL_PLAINTEXT
+        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="${KAFKA_PWD:admin-2019}";
+      enable-auto-commit: false
+      group-id: alarmdeal-consumer-group-test-2
+      auto-commit-interval: 100
+      auto-offset-reset: latest
+      max-poll-records: 1000
+      fetch-max-wait: 400 #最大等待时间
+      fetch-min-size: 1 #最小消费字节数
+    producer:
+      enable-auto-commit: false # 是否自动提交offset
+      retries: 0 # 重试次数
+      acks: all # 应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
+      batch-size: 16384 # 批量大小
+      buffer-memory: 33554432 # 生产端缓冲区大小
+      properties:
+        sasl.mechanism: PLAIN
+        security.protocol: SASL_PLAINTEXT
+        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="${KAFKA_PWD:admin-2019}";
+    listener:
+      concurrency: 3

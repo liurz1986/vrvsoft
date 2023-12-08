@@ -1,0 +1,64 @@
+
+#端口号，默认8080，可以自己改， 项目在设置的端口号启动
+server:
+  port: 8088
+  #项目启动时在工程名前加上usercenter,springboot2.0以下的使用server.context-path
+  servlet:
+     context-path: /activitServer
+spring:
+  datasource:
+    #使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: mysql
+    url: jdbc:mysql://localhost:3306/ajb_vap?serverTimezone=UTC&nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+  # activiti配置
+  activiti:
+    database-schema-update: true #是否每次都更新数据库:自动更新数据库结构
+    check-process-definitions : false  # 默认为true --activti是否自动部署:自动检查、部署流程定义文件,就是在resource下的文件检查并部署;如果是false就不会自动部署
+    history-level: full #历史记录存储等级：full最高级别
+    db-history-used: true  # activiti7增加的：默认不生成历史信息表，设置为true就生成历史信息表
+    process-defintition-location-prefix: classpath:/processes/  #实际流程存放的位置--流程定义文件存放目录
+    #定时事件配置
+    #启用作业执行器
+    async-executor-activate: true
+    #启用异步执行器
+    job-executor-activate: true
+  #jpa配置
+  jpa:
+    show-sql: true
+    hibernate:
+       ddl-auto: update
+       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+       dialect: org.hibernate.dialect.MySQL5Dialect
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  #redis
+  redis:
+    host: 192.168.121.21
+    port: 6379
+    password: vrv@1234
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 6000
+        max-idle: 5
+        min-idle: 1
+#Thymeleaf 模板的默认位置在 resources/templates 目录下，默认的后缀是 html templates
+  thymeleaf:
+    prefix: classpath:/templates/  #thymeleaf 所在路径
+    suffix: .html  #thymeleaf 后缀
+    mode: HTML5  #thymeleaf 采用的标准
+    encoding: UTF-8  #thymeleaf 编码格式
+    servlet:
+      content-type: text/html
+    cache: true  # 关闭缓存，即时刷新，上线生产环境需改成true
+
+

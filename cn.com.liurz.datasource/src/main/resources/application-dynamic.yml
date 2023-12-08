@@ -1,0 +1,21 @@
+#多数据dynamic框架
+spring:
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候回抛出异常,不启动会使用默认数据源.
+      datasource:
+        master:
+          driver-class-name: com.mysql.jdbc.Driver
+          username: ${MYSQL_USER:root}
+          password: ${MYSQL_PASSWORD:mysql}
+          url: jdbc:mysql://${MYSQL_HOST:192.168.120.201}:${MYSQL_PORT:3306}/ajb_vap?useUnicode=true&useSSL=false&characterEncoding=UTF-8
+        db1:
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://${MYSQL_HOST:192.168.120.201}:${MYSQL_PORT:3306}/test_data?useUnicode=true&useSSL=false&characterEncoding=UTF-8
+          username: root
+          password: mysql
+  jpa:
+    hibernate:
+        naming:
+         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

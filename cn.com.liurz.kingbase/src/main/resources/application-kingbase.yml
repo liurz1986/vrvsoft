@@ -1,0 +1,41 @@
+server:
+  port: 8091
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: api-kingbase
+  datasource:
+    driver-class-name: com.kingbase8.Driver
+    username: ${MYSQL_USER:system}
+    password: ${MYSQL_PASSWORD:123456}
+    url: jdbc:kingbase8://${MYSQL_HOST:192.168.118.138}:${MYSQL_PORT:54321}/ajb_vap?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+mybatis-plus:
+  #别名包定义 Mapper的resultType中只需要写类名 之后自动拼接即可,----------实体包
+  #  xml文件中resultMap的type、parameterType、resultType会引用一些实体类，我们需要写上全限定类名，如果不写全限定类名，只写一个实体类的名称:
+  type-aliases-package: cn.com.liurz.kingbase.entity
+  #加载指定的xml映射文件
+  mapper-locations: classpath:/mappers/*.xml
+  #开启驼峰映射
+  #  该配置就是将带有下划线的表字段映射为驼峰格式的实体类属性
+  #  配置该项后，在开发中只需要根据查询返回的字段，创建好实体类就可以了
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true # 开启缓存
+  global-config:
+    db-config:
+      id-type: auto # 主键类型
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: postgresql
+  supportMethodsArguments: true
+  params: count=countSql
+#启动 swagger
+springfox:
+  documentation:
+    enabled: true

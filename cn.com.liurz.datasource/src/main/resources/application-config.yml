@@ -1,0 +1,22 @@
+#多数据手动配置
+spring:
+  datasource:
+    db1:
+      driver-class-name: com.mysql.jdbc.Driver
+      username: ${MYSQL_USER:root}
+      password: ${MYSQL_PASSWORD:mysql}
+      jdbc-url: jdbc:mysql://${MYSQL_HOST:192.168.120.201}:${MYSQL_PORT:3306}/ajb_vap?useUnicode=true&useSSL=false&characterEncoding=UTF-8
+    db2:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://${MYSQL_HOST:192.168.120.201}:${MYSQL_PORT:3306}/test_data?useUnicode=true&useSSL=false&characterEncoding=UTF-8
+      username: root
+      password: mysql
+  jpa:  #JPA配置
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none #不自动创建表结构
+    show-sql: true #显示SQL
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect

@@ -1,0 +1,31 @@
+#Rest Clients方式（推荐）
+
+server:
+  port : 8761
+
+spring:
+  application:
+    name: api-es
+  data:
+    elasticsearch:
+      cluster-name: ${ES_CLUSTER_NAME:elasticsearch-cluster}
+      cluster-client-nodes: ${ES_CLUSTER_HOST:192.168.120.201}:${ES_CLUSTER_PORT:9200}
+      http:
+          username: ${ES_CLUSTER_UNAME:admin}
+          password: ${ES_CLUSTER_PWD:vrv@12345}
+          maxConnectNum: 100
+          maxConnectPerRoute: 100
+
+es.shardCount: 5
+es.repliceCount: 0
+es.size: 10000
+
+
+
+
+
+
+
+
+
+

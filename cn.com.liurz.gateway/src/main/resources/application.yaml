@@ -1,0 +1,27 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /gateway
+spring:
+  main:
+      #SpringMvc依赖中自带一个Tomcat服务器,Gateway依赖中自带一个Netty服务器,启动服务时这个两个服务器都想启动,
+      # 会因为争夺端口号和主动权而发生冲突,我们需要在yml文件中添加配置解决
+      web-application-type: reactive
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true   #使用服务发现路由
+          lower-case-service-id: true
+      routes:
+        - id: api-flow   #设置路由id(理论上是可以随便写的)
+          uri: lb://api-flow  #设置路由的url lb://nacos服务注册名称 ;;;;目标服务地址
+          predicates:
+            - Path=/** #路径匹配规则     路由条件
+        - id: api-es
+          uri: lb://api-es
+          predicates:
+              - Path=/**
+      
+
+

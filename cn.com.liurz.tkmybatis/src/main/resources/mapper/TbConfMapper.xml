@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.liurz.tkmybatis.mapper">
+    <resultMap id="BaseResultMap" type="cn.com.liurz.tkmybatis.entity.TbConf">
+        <id column="conf_id" jdbcType="VARCHAR" property="confId"/>
+        <result column="conf_value" jdbcType="VARCHAR" property="confValue"/>
+
+    </resultMap>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT * from tb_conf
+    </select>
+
+
+    <select id="getByConfId" resultMap="BaseResultMap">
+        SELECT conf_id,conf_value from tb_conf where conf_id=#{confId}
+    </select>
+</mapper>
